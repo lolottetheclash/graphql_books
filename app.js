@@ -22,6 +22,14 @@ const connectDb = async () => {
 // connect to database
 connectDb();
 
+// bind express with graphql
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  })
+);
 
 app.listen(4000, () => {
   console.log('now listening for requests on port 4000');
