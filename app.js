@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -8,6 +9,9 @@ const schema = require('./schema/schema');
 dotenv.config({ path: '.env' });
 
 const app = express();
+
+// Fix CORS: Allows requests from other servers
+app.use(cors());
 
 const connectDb = async () => {
   const conn = await mongoose.connect(process.env.MONGO_URI, {
