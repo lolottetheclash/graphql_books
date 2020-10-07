@@ -8,6 +8,8 @@ import {
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
+import { Typography, Container } from '@material-ui/core/';
+
 import BookList from './components/BookList';
 import AddBook from './components/AddBook';
 import BookDetails from './components/BookDetails';
@@ -24,11 +26,16 @@ function App() {
       <ApolloProvider client={client}>
         <Switch>
           <Route exact path="/">
-            <div id="main">
-              <h1>Ninja's Reading List</h1>
+            <Container id="main">
+              <Typography
+                variant="h2"
+                style={{ textAlign: 'center', margin: 70, color: '#283747' }}
+              >
+                Ninja's Reading List
+              </Typography>
               <BookList />
               <AddBook />
-            </div>
+            </Container>
           </Route>
           <Route exact path="/details/:id">
             <BookDetails />

@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import {
+  TextField,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  Typography,
+} from '@material-ui/core/';
+import SaveIcon from '@material-ui/icons/Save';
+
+import {
   getAuthorsQuery,
   addBookMutation,
   getBooksQuery,
@@ -39,27 +49,43 @@ export default function AddBook() {
   };
 
   return (
-    <form id="add-book" onSubmit={addBook}>
+    <form
+      id="add-book"
+      onSubmit={addBook}
+      style={{ marginTop: 50, marginLeft: 10, width: 600, display: 'flex' }}
+    >
       <div className="field">
-        <label>Book Name:</label>
-        <input type="text" name="name" onChange={updateBookInfos}></input>
+        <InputLabel>Book Title</InputLabel>
+        <TextField
+          type="text"
+          name="name"
+          onChange={updateBookInfos}
+        ></TextField>
       </div>
-      <div className="field">
-        <label>Genre:</label>
-        <input type="text" name="genre" onChange={updateBookInfos}></input>
+      <div className="field" style={{ marginLeft: 40, marginRight: 40 }}>
+        <InputLabel>Genre</InputLabel>
+
+        <TextField
+          type="text"
+          name="genre"
+          onChange={updateBookInfos}
+        ></TextField>
       </div>
-      <div className="field">
-        <label>Select Author:</label>
-        <select name="authorId" onChange={updateBookInfos}>
-          <option value="">Please select an author</option>
+      <div className="field" style={{ marginRight: 40 }}>
+        <InputLabel>Author</InputLabel>
+        <Select
+          name="authorId"
+          onChange={updateBookInfos}
+          style={{ width: 150 }}
+        >
           {authors.map(author => {
             return (
-              <option key={author.id} value={author.id}>
+              <MenuItem key={author.id} value={author.id}>
                 {author.name}
-              </option>
+              </MenuItem>
             );
           })}
-        </select>
+        </Select>
       </div>
 
       <Button
