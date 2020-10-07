@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
+
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import BookList from './components/BookList';
@@ -13,15 +20,23 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <div id="main">
-        <h1>Ninja's Reading List</h1>
-        <BookList />
-        <AddBook />
-      </div>
+    <Router>
+      <ApolloProvider client={client}>
+        <Switch>
+          <Route exact path="/">
+            <div id="main">
+              <h1>Ninja's Reading List</h1>
+              <BookList />
+              <AddBook />
+            </div>
+          </Route>
+          <Route exact path="/details/:id">
             <BookDetails />
           </Route>
-    </ApolloProvider>
+          <Redirect to="/" />
+        </Switch>
+      </ApolloProvider>
+    </Router>
   );
 }
 
