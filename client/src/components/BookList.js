@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { getBooksQuery } from '../queries/queries';
+import MyBook from '../images/book.jpeg';
 
 export default function BookList() {
   const { loading, error, data } = useQuery(getBooksQuery);
@@ -15,8 +16,8 @@ export default function BookList() {
       <ul id="book-list">
         {books.map(book => {
           return (
-            <li key={book.id}>
-              <p>
+              <CardMedia style={{ height: 100 }} image={MyBook} />
+              <CardContent>
                 {book.name}
                 <button
                   style={{
