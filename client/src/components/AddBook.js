@@ -62,7 +62,23 @@ export default function AddBook() {
         </select>
       </div>
 
-      <button type="submit">Add</button>
+      <Button
+        type="submit"
+        color="primary"
+        variant="outlined"
+        size="large"
+        style={{ marginLeft: -20, marginRight: -20 }}
+        disabled={
+          (newBook.name === '') |
+          (newBook.genre === '') |
+          (newBook.authorId === '')
+            ? true
+            : false
+        }
+      >
+        <SaveIcon style={{ marginRight: 5 }} />
+        <Typography style={{ whiteSpace: 'nowrap' }}>Add Book</Typography>
+      </Button>
     </form>
   );
 }
